@@ -1,7 +1,7 @@
 <template
-  ><div class="content">
+  ><v-app class="content">
     <RootMeeting />
-  </div>
+  </v-app>
 </template>
 
 <script>
