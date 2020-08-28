@@ -1,0 +1,62 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+.SubTextContainer {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    color: #211536;
+}
+.nameTextLabel {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #211536;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.mainDatePicker {
+    display: flex;
+    justify-content: center;
+}
+.BlockPicker {
+    margin-right: 20px;
+}
+.line {
+    margin: 85px 5px 0 5px;
+    border: 1px solid #cdb1fb;
+    width: 30px;
+    height: 1px;
+}
+.btnForm {
+    font-weight: 600;
+    color: #000000;
+    padding: 8px 23px;
+    border-radius: 4px;
+    border: 1px solid #9b63f8;
+    font-size: 16px;
+    transition: 0.2s ease-out;
+    transition-delay: 0.1s;
+}
+.btnForm:hover {
+    font-weight: 600;
+    color: #ffffff;
+    padding: 8px 23px;
+    border-radius: 4px;
+    border: 1px solid #9b63f8;
+    background-color: #9b63f8;
+    font-size: 16px;
+}
+.Services {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin-right: 40px;
+    text-decoration: none;
+    color: #211536;
+}
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
