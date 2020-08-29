@@ -10,6 +10,7 @@
             height="58"
             label="Телефон"
             class="textField"
+            v-mask="['+7 (###) ###-##-##']"
             :value="getNumberData"
             @input="setNumber($event)"
           ></v-text-field>
@@ -42,8 +43,10 @@
 </template>
 
 <script>
+import { mask } from "vue-the-mask";
 export default {
   name: "ContactData",
+  directives: { mask },
   computed: {
     getNumberData: {
       get() {

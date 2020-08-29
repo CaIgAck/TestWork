@@ -5,8 +5,9 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import "./assets/fonts.css";
 import Vuelidate from "vuelidate";
+import VueTheMask from "vue-the-mask";
 
-Vue.use(Vuelidate);
+Vue.use(Vuelidate, VueTheMask);
 
 Vue.config.productionTip = false;
 

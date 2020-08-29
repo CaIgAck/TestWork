@@ -2,12 +2,12 @@
   <div>
     <div class="InformationOrganizer">
       <h4 class="nameTextLabel">Подробное описание</h4>
-      <v-text-field
+      <v-textarea
         outlined
         height="193"
         :value="getDescriptionData"
         @input="set($event)"
-      ></v-text-field>
+      ></v-textarea>
     </div>
   </div>
 </template>

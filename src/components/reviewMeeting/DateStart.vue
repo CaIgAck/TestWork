@@ -3,155 +3,132 @@
     <div class="mainDatePicker" v-if="!displayMeetStart">
       <div class="BlockPicker">
         <v-menu
-          v-model="fromDateMenu"
+          v-model="fromDateMenuStart"
           :close-on-content-click="false"
           :nudge-right="40"
           lazy
           transition="scale-transition"
-          offset-y
-          full-width
           max-width="290px"
           min-width="290px"
         >
           <template v-slot:activator="{ on }">
+            <h4 class="nameTextLabel">Дата начала</h4>
             <v-text-field
-              label="From Date"
-              prepend-icon="event"
+              outlined
               readonly
-              :value="fromDateDisp"
+              :value="getDatePicker"
               v-on="on"
             ></v-text-field>
           </template>
           <v-date-picker
             locale="en-in"
-            v-model="fromDateVal"
             no-title
-            @input="fromDateMenu = false"
+            :value="getDatePicker"
+            @input="setPicker('datePickerValue', $event)"
+            @click="fromDateMenu"
           ></v-date-picker>
         </v-menu>
-        <!--        <v-menu-->
-        <!--          v-model="fromDateMenuStart"-->
-        <!--          :close-on-content-click="false"-->
-        <!--          :nudge-right="40"-->
-        <!--          lazy-->
-        <!--          transition="scale-transition"-->
-        <!--          max-width="290px"-->
-        <!--          min-width="290px"-->
-        <!--        >-->
-        <!--          <template v-slot:activator="{ on }">-->
-        <!--            <h4 class="nameTextLabel">Дата начала</h4>-->
-        <!--            <v-text-field-->
-        <!--              outlined-->
-        <!--              readonly-->
-        <!--              :value="fromDateDisp"-->
-        <!--              v-on="on"-->
-        <!--            ></v-text-field>-->
-        <!--          </template>-->
-        <!--          <v-date-picker-->
-        <!--            locale="en-in"-->
-        <!--            v-model="fromDateVal"-->
-        <!--            no-title-->
-        <!--            @input="fromDateMenu"-->
-        <!--          ></v-date-picker>-->
-        <!--        </v-menu>-->
       </div>
-      <!--      <div>-->
-      <!--        <v-menu-->
-      <!--          v-model="fromTimeMenuStart"-->
-      <!--          :close-on-content-click="false"-->
-      <!--          :nudge-right="40"-->
-      <!--          lazy-->
-      <!--          transition="scale-transition"-->
-      <!--          max-width="290px"-->
-      <!--          min-width="290px"-->
-      <!--        >-->
-      <!--          <template v-slot:activator="{ on }">-->
-      <!--            <h4 class="nameTextLabel">Время начала</h4>-->
-      <!--            <v-text-field-->
-      <!--              outlined-->
-      <!--              readonly-->
-      <!--              :value="fromDateDisp"-->
-      <!--              v-on="on"-->
-      <!--            ></v-text-field>-->
-      <!--          </template>-->
-      <!--          <v-time-picker-->
-      <!--            locale="en-in"-->
-      <!--            v-model="fromDateVal"-->
-      <!--            @input="fromTimeMenuStart"-->
-      <!--          ></v-time-picker>-->
-      <!--        </v-menu>-->
-      <!--      </div>-->
-      <!--      <div class="line"></div>-->
-      <!--      <div class="BlockPicker">-->
-      <!--        <v-menu-->
-      <!--          v-model="fromDateMenu"-->
-      <!--          :close-on-content-click="false"-->
-      <!--          :nudge-right="40"-->
-      <!--          lazy-->
-      <!--          transition="scale-transition"-->
-      <!--          max-width="290px"-->
-      <!--          min-width="290px"-->
-      <!--        >-->
-      <!--          <template v-slot:activator="{ on }">-->
-      <!--            <h4 class="nameTextLabel">Дата конца</h4>-->
-      <!--            <v-text-field-->
-      <!--              outlined-->
-      <!--              readonly-->
-      <!--              :value="fromDateDisp"-->
-      <!--              v-on="on"-->
-      <!--            ></v-text-field>-->
-      <!--          </template>-->
-      <!--          <v-date-picker-->
-      <!--            locale="en-in"-->
-      <!--            v-model="fromDateVal"-->
-      <!--            no-title-->
-      <!--            @input="fromDateMenu"-->
-      <!--          ></v-date-picker>-->
-      <!--        </v-menu>-->
-      <!--      </div>-->
-      <!--      <div>-->
-      <!--        <v-menu-->
-      <!--          v-model="fromDateMenu"-->
-      <!--          :close-on-content-click="false"-->
-      <!--          :nudge-right="40"-->
-      <!--          lazy-->
-      <!--          transition="scale-transition"-->
-      <!--          max-width="290px"-->
-      <!--          min-width="290px"-->
-      <!--        >-->
-      <!--          <template v-slot:activator="{ on }">-->
-      <!--            <h4 class="nameTextLabel">Время конца</h4>-->
-      <!--            <v-text-field-->
-      <!--              outlined-->
-      <!--              readonly-->
-      <!--              :value="fromDateDisp"-->
-      <!--              v-on="on"-->
-      <!--            ></v-text-field>-->
-      <!--          </template>-->
-      <!--          <v-date-picker-->
-      <!--            locale="en-in"-->
-      <!--            v-model="fromDateVal"-->
-      <!--            no-title-->
-      <!--            @input="fromDateMenu"-->
-      <!--          ></v-date-picker>-->
-      <!--        </v-menu>-->
-      <!--      </div>-->
-      <!--      <button class="btnFormDate" @click="displayContent">x</button>-->
+      <div>
+        <v-menu
+          v-model="fromTimeMenuStart"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          lazy
+          transition="scale-transition"
+          max-width="290px"
+          min-width="290px"
+        >
+          <template v-slot:activator="{ on }">
+            <h4 class="nameTextLabel">Время начала</h4>
+            <v-text-field
+              outlined
+              readonly
+              v-on="on"
+              :value="getTimePicker"
+            ></v-text-field>
+          </template>
+          <v-time-picker
+            locale="en-in"
+            :value="getTimePicker"
+            @input="setPicker('timePickerValue', $event)"
+            @click="fromTimeMenuStart"
+          ></v-time-picker>
+        </v-menu>
+      </div>
+      <div class="line"></div>
+      <div class="BlockPicker">
+        <v-menu
+          v-model="fromDateMenuEnd"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          lazy
+          transition="scale-transition"
+          max-width="290px"
+          min-width="290px"
+        >
+          <template v-slot:activator="{ on }">
+            <h4 class="nameTextLabel">Дата конца</h4>
+            <v-text-field
+              outlined
+              readonly
+              :value="getDatePickerEnd"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            locale="en-in"
+            :value="getDatePickerEnd"
+            @input="setPicker('datePickerValueEnd', $event)"
+            @click="fromDateMenuEnd"
+          ></v-date-picker>
+        </v-menu>
+      </div>
+      <div>
+        <v-menu
+          v-model="fromTimeMenuEnd"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          lazy
+          transition="scale-transition"
+          max-width="290px"
+          min-width="290px"
+        >
+          <template v-slot:activator="{ on }">
+            <h4 class="nameTextLabel">Время конца</h4>
+            <v-text-field
+              outlined
+              readonly
+              :value="getTimePickerEnd"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-time-picker
+            locale="en-in"
+            :value="getTimePickerEnd"
+            @input="setPicker('timePickerValueEnd', $event)"
+            @click="fromTimeMenuEnd"
+          ></v-time-picker>
+        </v-menu>
+      </div>
+      <button class="btnFormDate" @click="displayContent">x</button>
     </div>
-    <!--    <CreateDateStart />-->
+    <CreateDateStart />
   </div>
 </template>
 
 <script>
-// import CreateDateStart from "@/components/reviewMeeting/CreateDateStart";
+import CreateDateStart from "@/components/reviewMeeting/CreateDateStart";
 export default {
   name: "DateStart",
-  // components: { CreateDateStart },
+  components: { CreateDateStart },
   data() {
     return {
       fromDateMenuStart: false,
+      fromDateMenuEnd: false,
+      fromTimeMenuStart: false,
+      fromTimeMenuEnd: false,
       displayMeetStart: false,
-      //   fromTimeMenuStart: false,
       fromDateMenu: false,
       fromDateVal: null
     };
@@ -159,11 +136,29 @@ export default {
   computed: {
     fromDateDisp() {
       return this.fromDateVal;
+    },
+    getDatePicker() {
+      return this.$store.getters.getDatePickerValue;
+    },
+    getTimePicker() {
+      return this.$store.getters.getTimePickerValue;
+    },
+    getDatePickerEnd() {
+      return this.$store.getters.getDatePickerEnd;
+    },
+    getTimePickerEnd() {
+      return this.$store.getters.getTimePickerEnd;
     }
   },
   methods: {
     displayContent() {
       this.displayMeetStart = true;
+    },
+    setPicker(field, newValue) {
+      this.$store.commit("setDataPickerValue", {
+        field: field,
+        value: newValue
+      });
     }
   }
 };

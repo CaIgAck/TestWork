@@ -23,8 +23,8 @@
           <h1>{{ getNameInfo }}</h1>
           <div>
             <p>{{ getCiti }}</p>
-            <p>дата</p>
-            <p>время</p>
+            <p>{{ getDateStart }} - {{ getDateEnd }}</p>
+            <p>{{ getTimeStart }} - {{ getTimeEnd }}</p>
           </div>
           <div>
             <h4>Контакты</h4>
@@ -74,6 +74,18 @@ export default {
     },
     getDescription() {
       return this.$store.getters.getDataDescriptionInfo;
+    },
+    getDateStart() {
+      return this.$store.getters.getDatePickerValue;
+    },
+    getDateEnd() {
+      return this.$store.getters.getDatePickerEnd;
+    },
+    getTimeStart() {
+      return this.$store.getters.getTimePickerValue;
+    },
+    getTimeEnd() {
+      return this.$store.getters.getTimePickerEnd;
     }
   }
 };
