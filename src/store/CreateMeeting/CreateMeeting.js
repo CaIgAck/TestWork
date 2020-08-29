@@ -1,26 +1,38 @@
 export default {
   state: {
     nameOrganizator: null,
-    contactsData: {
-      number: null,
-      eMail: null,
-      citi: null
-    },
+    number: null,
+    eMail: null,
+    citi: null,
     nameInfo: null,
-    descriptionInfo: null
+    descriptionInfo: null,
+    locationInfo: null,
+    rankLocation: null
   },
   getters: {
     getDataNameOrganizator(state) {
       return state.nameOrganizator;
     },
-    getDataContactsData(state) {
-      return state.contactsData;
+    getDataNumber(state) {
+      return state.number;
+    },
+    getDataEMail(state) {
+      return state.eMail;
+    },
+    getDataCiti(state) {
+      return state.citi;
     },
     getDataNameInfo(state) {
       return state.nameInfo;
     },
     getDataDescriptionInfo(state) {
       return state.descriptionInfo;
+    },
+    getDataLocationInfo(state) {
+      return state.locationInfo;
+    },
+    getDataRankLocation(state) {
+      return state.rankLocation;
     }
   },
   actions: {},

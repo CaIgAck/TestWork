@@ -10,8 +10,8 @@
             height="58"
             label="Телефон"
             class="textField"
-            :value="getContactData"
-            @input="set('contactsData', $event)"
+            :value="getNumberData"
+            @input="setNumber($event)"
           ></v-text-field>
         </div>
         <div>
@@ -21,6 +21,8 @@
             height="58"
             label="E-mail"
             class="textField"
+            :value="getDataEMail"
+            @input="setEmail($event)"
           ></v-text-field>
         </div>
         <div>
@@ -30,6 +32,8 @@
             height="58"
             label="Город организатора"
             class="textField"
+            :value="getCitiData"
+            @input="setCiti($event)"
           ></v-text-field>
         </div>
       </div>
@@ -41,16 +45,38 @@
 export default {
   name: "ContactData",
   computed: {
-    getContactData: {
+    getNumberData: {
       get() {
-        return this.$store.getters.getDataContactsData;
+        return this.$store.getters.getDataNumber;
+      }
+    },
+    getDataEMail: {
+      get() {
+        return this.$store.getters.getDataEMail;
+      }
+    },
+    getCitiData: {
+      get() {
+        return this.$store.getters.getDataCiti;
       }
     }
   },
   methods: {
-    set(newValue) {
+    setNumber(newValue) {
       return this.$store.commit("editDataState", {
-        field: "contactsData",
+        field: "number",
+        value: newValue
+      });
+    },
+    setCiti(newValue) {
+      return this.$store.commit("editDataState", {
+        field: "citi",
+        value: newValue
+      });
+    },
+    setEmail(newValue) {
+      return this.$store.commit("editDataState", {
+        field: "eMail",
         value: newValue
       });
     }

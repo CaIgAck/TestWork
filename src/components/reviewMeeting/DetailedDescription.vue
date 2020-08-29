@@ -6,7 +6,7 @@
         outlined
         height="193"
         :value="getDescriptionData"
-        @input="set('descriptionInfo', $event)"
+        @input="set($event)"
       ></v-text-field>
     </div>
   </div>

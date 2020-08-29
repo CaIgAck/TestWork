@@ -7,9 +7,10 @@
         outlined
         height="58"
         :value="GetInformation"
-        @input="set('nameInfo', $event)"
+        @input="set($event)"
       ></v-text-field>
     </div>
+    <UploadPhoto />
     <DetailedDescription />
     <DateStart />
     <Categories />
@@ -20,9 +21,10 @@
 import DetailedDescription from "@/components/reviewMeeting/DetailedDescription";
 import DateStart from "@/components/reviewMeeting/DateStart";
 import Categories from "@/components/reviewMeeting/Categories";
+import UploadPhoto from "@/components/reviewMeeting/UploadPhoto";
 export default {
   name: "GeneralInformation",
-  components: { Categories, DateStart, DetailedDescription },
+  components: { UploadPhoto, Categories, DateStart, DetailedDescription },
   computed: {
     GetInformation: {
       get() {

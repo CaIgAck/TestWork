@@ -1,5 +1,11 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <CheckPage />
   </div>
 </template>
+<script>
+import CheckPage from "@/components/CreateMeeting/CheckPage";
+export default {
+  components: { CheckPage }
+};
+</script>

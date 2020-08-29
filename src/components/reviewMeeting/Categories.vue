@@ -2,37 +2,74 @@
   <div class="Form">
     <div class="CategoriesForm">
       <div class="CategoriesItem">
-        <h4 class="nameTextLabel">Категория</h4>
-        <v-select :items="itemsCategories" outlined></v-select>
-      </div>
-      <div class="CategoriesItem">
         <h4 class="nameTextLabel">Рейтинг мероприятия</h4>
-        <v-select :items="itemsRanks" outlined></v-select>
+        <v-select
+          outlined
+          :items="getRank"
+          @input="setRankLocation($event)"
+          :value="getRankLocation"
+        ></v-select>
       </div>
       <div class="CategoriesItem">
         <h4 class="nameTextLabel">Адрес мероприятия</h4>
-        <v-text-field outlined height="58"></v-text-field>
-      </div>
-      <div class="CategoriesItem">
-        <h4 class="nameTextLabel">Комментарий к адресу</h4>
-        <v-text-field outlined height="58"></v-text-field>
+        <v-text-field
+          outlined
+          height="58"
+          :value="getLocation"
+          @input="setLocation($event)"
+        ></v-text-field>
       </div>
     </div>
     <div>
       <button class=" btnCategories">Отменить</button>
-      <button class=" btnCategories">Далее</button>
+      <button class=" btnCategories" @click="nextPage">Далее</button>
     </div>
   </div>
 </template>
 
 <script>
+import router from "@/router";
 export default {
   name: "Categories",
   data() {
     return {
-      itemsCategories: ["обычное мероприятие", "необычное  мероприятие"],
-      itemsRanks: ["0+", "6+", "16+"]
+      itemsCategories: ["обычное мероприятие", "необычное  мероприятие"]
     };
+  },
+  mounted() {
+    this.$store.dispatch("getRankData");
+  },
+  computed: {
+    getRank() {
+      return this.$store.getters.Rank;
+    },
+    getLocation: {
+      get() {
+        return this.$store.getters.getDataLocationInfo;
+      }
+    },
+    getRankLocation: {
+      get() {
+        return this.$store.getters.getDataRankLocation;
+      }
+    }
+  },
+  methods: {
+    setLocation(newValue) {
+      return this.$store.commit("editDataState", {
+        field: "locationInfo",
+        value: newValue
+      });
+    },
+    setRankLocation(newValue) {
+      return this.$store.commit("editDataState", {
+        field: "rankLocation",
+        value: newValue
+      });
+    },
+    nextPage() {
+      router.push("/about");
+    }
   }
 };
 </script>

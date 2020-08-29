@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="MainContentText">
-      <h1 class="textHeader">Создать мероприятие</h1>
+      <h1 class="textHeader">Шаг 1</h1>
     </div>
     <div class="InformationOrganizer">
       <h3 class="SubTextContainer">Информация об организаторе</h3>
@@ -10,7 +10,7 @@
         outlined
         height="58"
         :value="getDataForm"
-        @input="set('nameOrganizator', $event)"
+        @input="set($event)"
       ></v-text-field>
     </div>
   </div>
