@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Шаг 1</h1>
+    <h1>Шаг 2</h1>
     <v-card class="px-6 py-3 d-flex align-center">
       <div class="mr-5">
         <v-img
