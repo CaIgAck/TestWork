@@ -8,6 +8,8 @@
           :items="getRank"
           @input="setRankLocation($event)"
           :value="getRankLocation"
+          @blur="$v.getRankLocation.$touch()"
+          :error-messages="RankErrors"
         ></v-select>
       </div>
       <div class="CategoriesItem">
@@ -17,6 +19,8 @@
           height="58"
           :value="getLocation"
           @input="setLocation($event)"
+          @blur="$v.getLocation.$touch()"
+          :error-messages="LocationErrors"
         ></v-text-field>
       </div>
     </div>
@@ -28,20 +32,46 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { required } from "vuelidate/lib/validators";
 import router from "@/router";
 export default {
   name: "Categories",
-  data() {
-    return {
-      itemsCategories: ["обычное мероприятие", "необычное  мероприятие"]
-    };
+  validations: {
+    getLocation: {
+      required
+    },
+    getRankLocation: {
+      required
+    }
   },
   mounted() {
     this.$store.dispatch("getRankData");
   },
   computed: {
+    ...mapGetters({
+      NameOrganizator: "getDataNameOrganizator",
+      Number: "getDataNumber",
+      EMail: "getDataEMail",
+      Citi: "getDataCiti",
+      NameInfo: "getDataNameInfo",
+      DescriptionInfo: "getDataDescriptionInfo"
+    }),
     getRank() {
       return this.$store.getters.Rank;
+    },
+    LocationErrors() {
+      const errors = [];
+      if (!this.$v.getLocation.$dirty) return errors;
+      !this.$v.getLocation.required && errors.push("Поле название обязательно");
+      return errors;
+    },
+    RankErrors() {
+      const errors = [];
+      if (!this.$v.getRankLocation.$dirty) return errors;
+      !this.$v.getRankLocation.required &&
+        errors.push("Поле название обязательно");
+      return errors;
     },
     getLocation: {
       get() {
@@ -68,7 +98,27 @@ export default {
       });
     },
     nextPage() {
-      router.push("/about");
+      let NameOrganizator = this.NameOrganizator,
+        Number = this.Number,
+        EMail = this.EMail,
+        Citi = this.Citi,
+        NameInfo = this.NameInfo,
+        DescriptionInfo = this.DescriptionInfo,
+        RankLocation = this.getRankLocation,
+        Location = this.getLocation;
+
+      if (
+        NameOrganizator &&
+        Number &&
+        EMail &&
+        Citi &&
+        NameInfo &&
+        DescriptionInfo &&
+        RankLocation &&
+        Location != null
+      ) {
+        router.push("/about");
+      }
     }
   }
 };

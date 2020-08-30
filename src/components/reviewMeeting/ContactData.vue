@@ -13,6 +13,8 @@
             v-mask="['+7 (###) ###-##-##']"
             :value="getNumberData"
             @input="setNumber($event)"
+            @blur="$v.getNumberData.$touch()"
+            :error-messages="numberErrors"
           ></v-text-field>
         </div>
         <div>
@@ -24,8 +26,7 @@
             class="textField"
             :value="getDataEMail"
             @input="setEmail($event)"
-            v-model.trim="$v.email.$model"
-            @blur="$v.email.$touch()"
+            @blur="$v.getDataEMail.$touch()"
             :error-messages="emailErrors"
           ></v-text-field>
         </div>
@@ -38,6 +39,8 @@
             class="textField"
             :value="getCitiData"
             @input="setCiti($event)"
+            @blur="$v.getCitiData.$touch()"
+            :error-messages="citiErrors"
           ></v-text-field>
         </div>
       </div>
@@ -57,21 +60,41 @@ export default {
   name: "ContactData",
   directives: { mask },
   validations: {
-    email: {
+    getDataEMail: {
       required,
       minLength: minLength(8),
       email,
       maxLength: maxLength(30)
+    },
+    getNumberData: {
+      required
+    },
+    getCitiData: {
+      required
     }
   },
   computed: {
     emailErrors() {
       const errors = [];
-      if (!this.$v.email.$dirty) return errors;
-      !this.$v.email.required && errors.push("Поле e-mail обязательно");
-      !this.$v.email.email && errors.push("Не валидное поле");
+      if (!this.$v.getDataEMail.$dirty) return errors;
+      !this.$v.getDataEMail.required && errors.push("Поле e-mail обязательно");
+      !this.$v.getDataEMail.email && errors.push("Не валидное поле");
       return errors;
     },
+    numberErrors() {
+      const errors = [];
+      if (!this.$v.getNumberData.$dirty) return errors;
+      !this.$v.getNumberData.required &&
+        errors.push("Поле телефон обязательно");
+      return errors;
+    },
+    citiErrors() {
+      const errors = [];
+      if (!this.$v.getCitiData.$dirty) return errors;
+      !this.$v.getCitiData.required && errors.push("Поле телефон обязательно");
+      return errors;
+    },
+
     getNumberData: {
       get() {
         return this.$store.getters.getDataNumber;
