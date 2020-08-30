@@ -16,7 +16,7 @@
             <v-text-field
               outlined
               readonly
-              :value="getDatePicker"
+              :value="getDatePicker | momentEditDate(getDatePicker)"
               v-on="on"
               append-icon="mdi-calendar"
             >
@@ -47,7 +47,7 @@
               outlined
               readonly
               v-on="on"
-              :value="getTimePicker"
+              :value="getTimePicker | momentEditTime(getTimePicker)"
               append-icon="mdi-camera-timer"
             ></v-text-field>
           </template>
@@ -75,7 +75,7 @@
             <v-text-field
               outlined
               readonly
-              :value="getDatePickerEnd"
+              :value="getDatePickerEnd | momentEditDate(getDatePickerEnd)"
               v-on="on"
               append-icon="mdi-calendar"
             ></v-text-field>
@@ -103,7 +103,7 @@
             <v-text-field
               outlined
               readonly
-              :value="getTimePickerEnd"
+              :value="getTimePickerEnd | momentEditTime(getTimePickerEnd)"
               v-on="on"
               append-icon="mdi-camera-timer"
             ></v-text-field>
@@ -128,6 +128,7 @@
 
 <script>
 import CreateDateStart from "@/components/reviewMeeting/CreateDateStart";
+import moment from "moment";
 export default {
   name: "DateStart",
   components: { CreateDateStart },
@@ -141,6 +142,14 @@ export default {
       fromDateMenu: false,
       fromDateVal: null
     };
+  },
+  filters: {
+    momentEditDate(value) {
+      return moment(value).format("MM-DD-YYYY");
+    },
+    momentEditTime(value) {
+      return moment(value).format("hh:mm");
+    }
   },
   computed: {
     fromDateDisp() {

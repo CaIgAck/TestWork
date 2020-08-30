@@ -24,6 +24,7 @@
         :params="params"
         :headers="headers"
         img-format="png"
+        lang-type="ru"
       ></myUpload>
       <img :src="getDataUrl" alt="" />
       <button class="btnFormDate ml-n2 mt-n3" @click="editDataState(null)">

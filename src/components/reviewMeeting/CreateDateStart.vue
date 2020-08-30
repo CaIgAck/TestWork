@@ -7,7 +7,7 @@
           <v-text-field
             outlined
             readonly
-            :value="item.datePickerValue | momentEditDate"
+            :value="item.datePickerValue | momentEditDate(item.datePickerValue)"
             append-icon="mdi-calendar"
           ></v-text-field>
         </div>
@@ -16,7 +16,7 @@
           <v-text-field
             outlined
             readonly
-            :value="item.timePickerValue | momentEditDate"
+            :value="item.timePickerValue | momentEditTime(item.timePickerValue)"
             append-icon="mdi-camera-timer"
           ></v-text-field>
         </div>
@@ -27,7 +27,9 @@
             outlined
             readonly
             append-icon="mdi-calendar"
-            :value="item.datePickerValueEnd | momentEditDate"
+            :value="
+              item.datePickerValueEnd | momentEditDate(item.datePickerValueEnd)
+            "
           ></v-text-field>
         </div>
         <div>
@@ -36,7 +38,9 @@
             outlined
             readonly
             append-icon="mdi-camera-timer"
-            :value="item.timePickerValueEnd | momentEditDate"
+            :value="
+              item.timePickerValueEnd | momentEditTime(item.timePickerValueEnd)
+            "
           ></v-text-field>
         </div>
         <button class="btnFormDate" @click="displayContent">
@@ -61,20 +65,22 @@ export default {
       displayMeetStart: false,
       fromDateMenu: false,
       fromDateVal: null
-      // date: parseISO(new Date().toISOString().substr(0, 10))
     };
   },
   filters: {
-    momentEditDate() {
-      return moment(this.date).format("dddd, MMMM Do YYYY");
+    momentEditDate(value) {
+      return moment(value).format("MM-DD-YYYY");
+    },
+    momentEditTime(value) {
+      return moment(value).format("hh:mm");
     }
   },
   computed: {
     getDateAndTime() {
       return this.$store.getters.getDateAndTime;
     }
-    // computedDateFormattedMomentjs() {
-    //   return moment(this.date).format("dddd, MMMM Do YYYY") : "";
+    // computedDateFormattedMomentjs (Date) {
+    //   return this.getDateAndTime(Date) ? moment(this.getDateAndTime(Date)).format('dddd, MMMM Do YYYY') : ''
     // }
   },
   methods: {
