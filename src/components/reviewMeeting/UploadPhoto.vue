@@ -3,11 +3,18 @@
     <h4 class="nameTextLabel">Фотографии</h4>
     <div class="d-flex">
       <div class="btn upload mr-5" @click="toggleShow">
-        добавить фото
+        <v-img
+          class="ma-auto mt-8"
+          :src="require('@/assets/photo.png')"
+          height="65"
+          width="80"
+          @blur="$v.getDataUrl.$touch()"
+          :error-messages="PhotoErrors"
+        ></v-img>
       </div>
       <myUpload
         field="img"
-        @crop-success="cropSuccess"
+        @crop-success="editDataState"
         @crop-upload-success="cropUploadSuccess"
         @crop-upload-fail="cropUploadFail"
         v-model="show"
@@ -18,11 +25,11 @@
         :headers="headers"
         img-format="png"
       ></myUpload>
-      <img :src="imgDataUrl" alt="" />
+      <img :src="getDataUrl" alt="" />
       <button
         class="btnFormDate ml-n2 mt-n3"
-        @click="displayContent"
-        v-if="!imgDataUrl == ''"
+        @click="editDataState(null)"
+        v-if="!DataUrl"
       >
         <v-icon color="white">mdi-close</v-icon>
       </button>
@@ -31,11 +38,17 @@
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
 import myUpload from "vue-image-crop-upload";
 export default {
   name: "UploadPhoto",
   components: {
     myUpload
+  },
+  validations: {
+    getDataUrl: {
+      required
+    }
   },
   data: function() {
     return {
@@ -47,15 +60,23 @@ export default {
       headers: {
         smail: "*_~"
       },
-      imgDataUrl: "" // the datebase64 url of created image
+      dataUrl: this.getDataUrl
     };
+  },
+  computed: {
+    getDataUrl() {
+      return this.$store.getters.getImgDataUrl;
+    },
+    PhotoErrors() {
+      const errors = [];
+      if (!this.$v.getDataUrl.$dirty) return errors;
+      !this.$v.getDataUrl.required && errors.push("Поле телефон обязательно");
+      return errors;
+    }
   },
   methods: {
     toggleShow() {
       this.show = !this.show;
-    },
-    displayContent() {
-      this.imgDataUrl = "";
     },
     /**
      * crop success
@@ -63,9 +84,15 @@ export default {
      * [param] imgDataUrl
      * [param] field
      */
-    cropSuccess(imgDataUrl) {
-      console.log("-------- crop success --------");
-      this.imgDataUrl = imgDataUrl;
+    // cropSuccess(imgDataUrl) {
+    //   console.log("-------- crop success --------");
+    //   this.imgDataUrl = imgDataUrl;
+    // },
+    editDataState(newValue) {
+      return this.$store.commit("editDataState", {
+        field: "imgDataUrl",
+        value: newValue
+      });
     },
     /**
      * upload success

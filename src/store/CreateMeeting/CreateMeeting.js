@@ -7,7 +7,8 @@ export default {
     nameInfo: null,
     descriptionInfo: null,
     locationInfo: null,
-    rankLocation: null
+    rankLocation: null,
+    imgDataUrl: null
   },
   getters: {
     getDataNameOrganizator(state) {
@@ -33,6 +34,9 @@ export default {
     },
     getDataRankLocation(state) {
       return state.rankLocation;
+    },
+    getImgDataUrl(state) {
+      return state.imgDataUrl;
     }
   },
   actions: {},

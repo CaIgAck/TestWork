@@ -25,7 +25,7 @@
       </div>
     </div>
     <div>
-      <button class=" btnCategories">Отменить</button>
+      <button class=" btnCategories" @click="clearField">Отменить</button>
       <button class=" btnCategories" @click="nextPage">Далее</button>
     </div>
   </div>
@@ -55,7 +55,8 @@ export default {
       EMail: "getDataEMail",
       Citi: "getDataCiti",
       NameInfo: "getDataNameInfo",
-      DescriptionInfo: "getDataDescriptionInfo"
+      DescriptionInfo: "getDataDescriptionInfo",
+      PhotoUrl: "getImgDataUrl"
     }),
     getRank() {
       return this.$store.getters.Rank;
@@ -105,7 +106,8 @@ export default {
         NameInfo = this.NameInfo,
         DescriptionInfo = this.DescriptionInfo,
         RankLocation = this.getRankLocation,
-        Location = this.getLocation;
+        Location = this.getLocation,
+        PhotoURL = this.PhotoUrl;
 
       if (
         NameOrganizator &&
@@ -115,11 +117,13 @@ export default {
         NameInfo &&
         DescriptionInfo &&
         RankLocation &&
-        Location != null
+        Location &&
+        PhotoURL != null
       ) {
         router.push("/about");
       }
-    }
+    },
+    clearField() {}
   }
 };
 </script>
