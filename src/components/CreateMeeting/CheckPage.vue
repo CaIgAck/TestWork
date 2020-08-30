@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1 class="textHeader">Шаг 2</h1>
-    <v-card class="px-6 py-3 d-flex align-center">
+  <div class="mt-12">
+    <h1 class="textHeader mb-12">Шаг 2</h1>
+    <v-card class="px-6 py-3 d-flex align-center mb-12">
       <div class="mr-5">
         <v-img
           :src="require('@/assets/warning.png')"
@@ -43,6 +43,7 @@
             <h5 class="subHeaderCheckPage widthText">
               {{ getNameOrganizator }}
             </h5>
+            <p class="textChekPage">Организатор мероприятия</p>
           </div>
         </div>
       </div>

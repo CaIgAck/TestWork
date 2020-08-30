@@ -11,7 +11,6 @@
         height="58"
         :value="getDataForm"
         @input="set($event)"
-        :counter="10"
         @blur="$v.getDataForm.$touch()"
         :error-messages="getDataFormErrors"
       ></v-text-field>
@@ -65,15 +64,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.MainContentText {
-  margin-top: 123px;
-  margin-bottom: 124px;
-  .textHeader {
-    font-style: normal;
-    font-weight: 800;
-    font-size: 40px;
-    color: #351768;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

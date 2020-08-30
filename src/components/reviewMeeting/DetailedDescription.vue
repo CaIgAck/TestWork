@@ -7,7 +7,6 @@
         height="193"
         :value="getDescriptionData"
         @input="set($event)"
-        :counter="100"
         @blur="$v.getDescriptionData.$touch()"
         :error-messages="DescriptionErrors"
       ></v-textarea>
