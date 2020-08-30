@@ -140,25 +140,4 @@ export default {
     }
   }
 }
-
-.btnCategories {
-  padding: 15px 80px;
-  margin-right: 15px;
-  font-weight: 600;
-  color: #000000;
-  border-radius: 4px;
-  border: 1px solid #9b63f8;
-  font-size: 16px;
-  transition: 0.2s ease-out;
-  transition-delay: 0.1s;
-}
-.btnCategories:hover {
-  font-weight: 600;
-  color: #ffffff;
-  padding: 15px 80px;
-  border-radius: 4px;
-  border: 1px solid #9b63f8;
-  background-color: #9b63f8;
-  font-size: 16px;
-}
 </style>

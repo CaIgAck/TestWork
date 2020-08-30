@@ -12,11 +12,11 @@
           :error-messages="PhotoErrors"
         ></v-img>
       </div>
+      <!--        @crop-upload-success="cropUploadSuccess"-->
+      <!--        @crop-upload-fail="cropUploadFail"-->
       <myUpload
         field="img"
         @crop-success="editDataState"
-        @crop-upload-success="cropUploadSuccess"
-        @crop-upload-fail="cropUploadFail"
         v-model="show"
         :width="150"
         :height="150"
@@ -26,11 +26,7 @@
         img-format="png"
       ></myUpload>
       <img :src="getDataUrl" alt="" />
-      <button
-        class="btnFormDate ml-n2 mt-n3"
-        @click="editDataState(null)"
-        v-if="!DataUrl"
-      >
+      <button class="btnFormDate ml-n2 mt-n3" @click="editDataState(null)">
         <v-icon color="white">mdi-close</v-icon>
       </button>
     </div>
@@ -59,8 +55,7 @@ export default {
       },
       headers: {
         smail: "*_~"
-      },
-      dataUrl: this.getDataUrl
+      }
     };
   },
   computed: {
@@ -93,29 +88,29 @@ export default {
         field: "imgDataUrl",
         value: newValue
       });
-    },
+    }
     /**
      * upload success
      *
      * [param] jsonData  server api return data, already json encode
      * [param] field
      */
-    cropUploadSuccess(jsonData, field) {
-      console.log("-------- upload success --------");
-      console.log(jsonData);
-      console.log("field: " + field);
-    },
+    // cropUploadSuccess(jsonData, field) {
+    //   console.log("-------- upload success --------");
+    //   console.log(jsonData);
+    //   console.log("field: " + field);
+    // },
     /**
      * upload fail
      *
      * [param] status    server api return error status, like 500
      * [param] field
      */
-    cropUploadFail(status, field) {
-      console.log("-------- upload fail --------");
-      console.log(status);
-      console.log("field: " + field);
-    }
+    // cropUploadFail(status, field) {
+    //   console.log("-------- upload fail --------");
+    //   console.log(status);
+    //   console.log("field: " + field);
+    // }
   }
 };
 </script>

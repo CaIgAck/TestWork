@@ -18,7 +18,9 @@
               readonly
               :value="getDatePicker"
               v-on="on"
-            ></v-text-field>
+              append-icon="mdi-calendar"
+            >
+            </v-text-field>
           </template>
           <v-date-picker
             locale="en-in"
@@ -46,6 +48,7 @@
               readonly
               v-on="on"
               :value="getTimePicker"
+              append-icon="mdi-camera-timer"
             ></v-text-field>
           </template>
           <v-time-picker
@@ -74,6 +77,7 @@
               readonly
               :value="getDatePickerEnd"
               v-on="on"
+              append-icon="mdi-calendar"
             ></v-text-field>
           </template>
           <v-date-picker
@@ -101,6 +105,7 @@
               readonly
               :value="getTimePickerEnd"
               v-on="on"
+              append-icon="mdi-camera-timer"
             ></v-text-field>
           </template>
           <v-time-picker
@@ -116,6 +121,8 @@
       </button>
     </div>
     <CreateDateStart />
+
+    <button class="btnForm" @click="addTimeAndDate">+ Добавить дату</button>
   </div>
 </template>
 
@@ -161,6 +168,9 @@ export default {
         field: field,
         value: newValue
       });
+    },
+    addTimeAndDate() {
+      return this.$store.commit("addTimeAndDate");
     }
   }
 };

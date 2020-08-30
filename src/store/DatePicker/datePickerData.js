@@ -1,9 +1,10 @@
 export default {
   state: {
-    datePickerValue: null,
-    timePickerValue: null,
-    datePickerValueEnd: null,
-    timePickerValueEnd: null
+    datePickerValue: new Date(),
+    timePickerValue: new Date(),
+    datePickerValueEnd: new Date(),
+    timePickerValueEnd: new Date(),
+    dateAndTime: []
   },
   getters: {
     getDatePickerValue(state) {
@@ -17,6 +18,9 @@ export default {
     },
     getTimePickerEnd(state) {
       return state.timePickerValueEnd;
+    },
+    getDateAndTime(state) {
+      return state.dateAndTime;
     }
   },
   actions: {},
@@ -24,6 +28,18 @@ export default {
     setDataPickerValue(state, { field, value }) {
       state[field] = value;
       console.log((state[field] = value));
+    },
+    addTimeAndDate(state) {
+      state.dateAndTime.splice(0, 0, {
+        datePickerValue: state.datePickerValue,
+        timePickerValue: state.timePickerValue,
+        datePickerValueEnd: state.datePickerValueEnd,
+        timePickerValueEnd: state.timePickerValueEnd
+      });
+      (state.datePickerValue = new Date()),
+        (state.timePickerValue = new Date()),
+        (state.datePickerValueEnd = new Date()),
+        (state.timePickerValueEnd = new Date());
     }
   }
 };

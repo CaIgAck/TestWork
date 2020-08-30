@@ -27,14 +27,15 @@
           </h1>
           <div>
             <p class="textChekPage widthText">
-              <v-icon>mdi-map-marker</v-icon> {{ getCiti }}
+              <v-icon color="#9B63F8">mdi-map-marker</v-icon> {{ getCiti }}
             </p>
             <p class="textChekPage widthText">
-              <v-icon>mdi-calendar</v-icon> {{ getDateStart }} -
+              <v-icon color="#9B63F8">mdi-calendar</v-icon> {{ getDateStart }} -
               {{ getDateEnd }}
             </p>
             <p class="textChekPage widthText">
-              <v-icon>mdi-camera-timer</v-icon> {{ getTimeStart }} -
+              <v-icon color="#9B63F8">mdi-camera-timer</v-icon>
+              {{ getTimeStart }} -
               {{ getTimeEnd }}
             </p>
           </div>
@@ -42,10 +43,10 @@
             <h4 class="subHeaderCheckPage">Контакты</h4>
             <div>
               <p class="textChekPage widthText">
-                <v-icon>mdi-phone</v-icon> {{ getNumber }}
+                <v-icon color="#9B63F8">mdi-phone</v-icon> {{ getNumber }}
               </p>
               <p class="textChekPage widthText">
-                <v-icon>mdi-email</v-icon> {{ getEmail }}
+                <v-icon color="#9B63F8">mdi-email</v-icon> {{ getEmail }}
               </p>
             </div>
           </div>
@@ -64,10 +65,13 @@
     <div>
       <p class="textDescription">{{ getDescription }}</p>
     </div>
+    <button class="btnCategories" @click="goBack">Назад</button>
+    <button class="btnCategories">Отправить на модерацию</button>
   </div>
 </template>
 
 <script>
+import router from "@/router";
 export default {
   name: "CheckPage",
   computed: {
@@ -106,6 +110,11 @@ export default {
     },
     getDataUrl() {
       return this.$store.getters.getImgDataUrl;
+    }
+  },
+  methods: {
+    goBack() {
+      router.push("/");
     }
   }
 };
