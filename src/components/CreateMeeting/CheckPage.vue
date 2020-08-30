@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Шаг 2</h1>
+    <h1 class="textHeader">Шаг 2</h1>
     <v-card class="px-6 py-3 d-flex align-center">
       <div class="mr-5">
         <v-img
@@ -16,25 +16,33 @@
         </strong>
       </div>
     </v-card>
-    <div class="d-flex justify-center">
+    <div class="d-flex justify-center mt-5">
       <div class="d-flex col-6">
-        <div class="icon">{{ getRank }}</div>
+        <div class="icon mr-4 pr-3">
+          <p class="rank">{{ getRank }}</p>
+        </div>
         <div>
-          <h1>{{ getNameInfo }}</h1>
+          <h1 class="textHeader widthText">{{ getNameInfo }}</h1>
           <div>
-            <p>{{ getCiti }}</p>
-            <p>{{ getDateStart }} - {{ getDateEnd }}</p>
-            <p>{{ getTimeStart }} - {{ getTimeEnd }}</p>
+            <p class="textChekPage widthText">{{ getCiti }}</p>
+            <p class="textChekPage widthText">
+              {{ getDateStart }} - {{ getDateEnd }}
+            </p>
+            <p class="textChekPage widthText">
+              {{ getTimeStart }} - {{ getTimeEnd }}
+            </p>
           </div>
           <div>
-            <h4>Контакты</h4>
+            <h4 class="subHeaderCheckPage">Контакты</h4>
             <div>
-              <p>{{ getNumber }}</p>
-              <p>{{ getEmail }}</p>
+              <p class="textChekPage widthText">{{ getNumber }}</p>
+              <p class="textChekPage widthText">{{ getEmail }}</p>
             </div>
           </div>
           <div>
-            <h5>{{ getNameOrganizator }}</h5>
+            <h5 class="subHeaderCheckPage widthText">
+              {{ getNameOrganizator }}
+            </h5>
           </div>
         </div>
       </div>
@@ -45,7 +53,7 @@
       </div>
     </div>
     <div>
-      <p>{{ getDescription }}</p>
+      <p class="textDescription">{{ getDescription }}</p>
     </div>
   </div>
 </template>
@@ -91,4 +99,21 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.icon {
+  width: 48px;
+  height: 48px;
+  background-color: #351768;
+  .rank {
+    margin: 10px 0 0 13px;
+    font-style: normal;
+    color: #ffff;
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+.widthText {
+  width: 500px;
+  word-wrap: break-word;
+}
+</style>

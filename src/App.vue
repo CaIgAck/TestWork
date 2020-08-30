@@ -1,21 +1,15 @@
-<template
-  ><v-app class="content">
-    <!--    <RootMeeting />-->
-    <v-app>
-      <v-main><router-view></router-view> </v-main>
-    </v-app>
+<template>
+  <v-app>
+    <v-main>
+      <router-view />
+    </v-main>
   </v-app>
 </template>
 
 <script>
-// import RootMeeting from "@/components/reviewMeeting/RootMeeting";
 export default {
-  name: "App",
-  // components: { RootMeeting },
-
-  data: () => ({
-    //
-  })
+  name: "app"
 };
 </script>
-<style lang="scss"></style>
+
+<style></style>

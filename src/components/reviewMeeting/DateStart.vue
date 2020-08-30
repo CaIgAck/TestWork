@@ -111,7 +111,9 @@
           ></v-time-picker>
         </v-menu>
       </div>
-      <button class="btnFormDate" @click="displayContent">x</button>
+      <button class="btnFormDate" @click="displayContent">
+        <v-icon color="white">mdi-close</v-icon>
+      </button>
     </div>
     <CreateDateStart />
   </div>
@@ -164,12 +166,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.btnFormDate {
-  background-color: #351767;
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  color: white;
-}
-</style>
+<style scoped></style>

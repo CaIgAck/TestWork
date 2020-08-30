@@ -1,5 +1,5 @@
 <template>
-  <div class="home"><RootMeeting /></div>
+  <div class="content"><RootMeeting /></div>
 </template>
 
 <script>

@@ -24,6 +24,9 @@
             class="textField"
             :value="getDataEMail"
             @input="setEmail($event)"
+            v-model.trim="$v.email.$model"
+            @blur="$v.email.$touch()"
+            :error-messages="emailErrors"
           ></v-text-field>
         </div>
         <div>
@@ -43,11 +46,32 @@
 </template>
 
 <script>
+import {
+  required,
+  minLength,
+  email,
+  maxLength
+} from "vuelidate/lib/validators";
 import { mask } from "vue-the-mask";
 export default {
   name: "ContactData",
   directives: { mask },
+  validations: {
+    email: {
+      required,
+      minLength: minLength(8),
+      email,
+      maxLength: maxLength(30)
+    }
+  },
   computed: {
+    emailErrors() {
+      const errors = [];
+      if (!this.$v.email.$dirty) return errors;
+      !this.$v.email.required && errors.push("Поле e-mail обязательно");
+      !this.$v.email.email && errors.push("Не валидное поле");
+      return errors;
+    },
     getNumberData: {
       get() {
         return this.$store.getters.getDataNumber;
