@@ -29,15 +29,18 @@
             <p class="textChekPage widthText">
               <v-icon color="#9B63F8">mdi-map-marker</v-icon> {{ getCiti }}
             </p>
-            <p class="textChekPage widthText">
-              <v-icon color="#9B63F8">mdi-calendar</v-icon> {{ getDateStart }} -
-              {{ getDateEnd }}
-            </p>
-            <p class="textChekPage widthText">
-              <v-icon color="#9B63F8">mdi-camera-timer</v-icon>
-              {{ getTimeStart }} -
-              {{ getTimeEnd }}
-            </p>
+            <div v-for="(item, index) in getDateAndTime" :key="index">
+              <p class="textChekPage widthText">
+                <v-icon color="#9B63F8">mdi-calendar</v-icon>
+                {{ item.getDateStart | momentEditDate(item.getDateStart) }} -
+                {{ getDateEnd | momentEditDate(getDateEnd) }}
+              </p>
+              <p class="textChekPage widthText">
+                <v-icon color="#9B63F8">mdi-camera-timer</v-icon>
+                {{ item.getTimeStart | momentEditTime(item.getTimeStart) }} -
+                {{ item.getTimeEnd | momentEditTime(item.getTimeEnd) }}
+              </p>
+            </div>
           </div>
           <div>
             <h4 class="subHeaderCheckPage">Контакты</h4>
@@ -72,6 +75,7 @@
 
 <script>
 import router from "@/router";
+import moment from "moment";
 export default {
   name: "CheckPage",
   computed: {
@@ -110,6 +114,17 @@ export default {
     },
     getDataUrl() {
       return this.$store.getters.getImgDataUrl;
+    },
+    getDateAndTime() {
+      return this.$store.getters.getDateAndTime;
+    }
+  },
+  filters: {
+    momentEditDate(value) {
+      return moment(value).format("MMM-DD");
+    },
+    momentEditTime(value) {
+      return moment(value).format("hh:mm");
     }
   },
   methods: {

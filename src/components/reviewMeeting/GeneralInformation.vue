@@ -14,20 +14,28 @@
     </div>
     <UploadPhoto />
     <DetailedDescription />
-    <DateStart />
+    <!--    <DateStart />-->
+    <CreateDateStart />
     <Categories />
   </div>
 </template>
 
 <script>
 import DetailedDescription from "@/components/reviewMeeting/DetailedDescription";
-import DateStart from "@/components/reviewMeeting/DateStart";
+// import DateStart from "@/components/reviewMeeting/DateStart";
 import Categories from "@/components/reviewMeeting/Categories";
 import UploadPhoto from "@/components/reviewMeeting/UploadPhoto";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import CreateDateStart from "@/components/reviewMeeting/CreateDateStart";
 export default {
   name: "GeneralInformation",
-  components: { UploadPhoto, Categories, DateStart, DetailedDescription },
+  components: {
+    CreateDateStart,
+    UploadPhoto,
+    Categories,
+    // DateStart,
+    DetailedDescription
+  },
   validations: {
     GetInformation: {
       required,

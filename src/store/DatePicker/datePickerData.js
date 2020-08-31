@@ -4,7 +4,14 @@ export default {
     timePickerValue: new Date(),
     datePickerValueEnd: new Date(),
     timePickerValueEnd: new Date(),
-    dateAndTime: []
+    dateAndTime: [
+      {
+        datePickerValue: new Date(),
+        timePickerValue: new Date(),
+        datePickerValueEnd: new Date(),
+        timePickerValueEnd: new Date()
+      }
+    ]
   },
   getters: {
     getDatePickerValue(state) {
@@ -40,6 +47,9 @@ export default {
         (state.timePickerValue = new Date()),
         (state.datePickerValueEnd = new Date()),
         (state.timePickerValueEnd = new Date());
+    },
+    deleteDateAndTime(state, index) {
+      state.dateAndTime.splice(index, 1);
     }
   }
 };

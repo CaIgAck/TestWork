@@ -43,11 +43,12 @@
             "
           ></v-text-field>
         </div>
-        <button class="btnFormDate" @click="displayContent">
+        <button class="btnFormDate" @click="DeleteDateAndTime(index)">
           <v-icon color="white">mdi-close</v-icon>
         </button>
       </div>
     </div>
+    <button class="btnForm" @click="addTimeAndDate">+ Добавить дату</button>
   </div>
 </template>
 
@@ -79,13 +80,16 @@ export default {
     getDateAndTime() {
       return this.$store.getters.getDateAndTime;
     }
-    // computedDateFormattedMomentjs (Date) {
-    //   return this.getDateAndTime(Date) ? moment(this.getDateAndTime(Date)).format('dddd, MMMM Do YYYY') : ''
-    // }
   },
   methods: {
     displayContent() {
       this.displayMeetStart = true;
+    },
+    DeleteDateAndTime(index) {
+      return this.$store.commit("deleteDateAndTime", index);
+    },
+    addTimeAndDate() {
+      return this.$store.commit("addTimeAndDate");
     }
   }
 };

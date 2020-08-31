@@ -49,7 +49,8 @@
               v-on="on"
               :value="getTimePicker | momentEditTime(getTimePicker)"
               append-icon="mdi-camera-timer"
-            ></v-text-field>
+            >
+            </v-text-field>
           </template>
           <v-time-picker
             locale="en-in"
@@ -78,7 +79,8 @@
               :value="getDatePickerEnd | momentEditDate(getDatePickerEnd)"
               v-on="on"
               append-icon="mdi-calendar"
-            ></v-text-field>
+            >
+            </v-text-field>
           </template>
           <v-date-picker
             locale="en-in"
@@ -106,7 +108,8 @@
               :value="getTimePickerEnd | momentEditTime(getTimePickerEnd)"
               v-on="on"
               append-icon="mdi-camera-timer"
-            ></v-text-field>
+            >
+            </v-text-field>
           </template>
           <v-time-picker
             locale="en-in"
@@ -120,18 +123,16 @@
         <v-icon color="white">mdi-close</v-icon>
       </button>
     </div>
-    <CreateDateStart />
-
-    <button class="btnForm" @click="addTimeAndDate">+ Добавить дату</button>
+    <!--    <CreateDateStart />-->
   </div>
 </template>
 
 <script>
-import CreateDateStart from "@/components/reviewMeeting/CreateDateStart";
+// import CreateDateStart from "@/components/reviewMeeting/CreateDateStart";
 import moment from "moment";
 export default {
   name: "DateStart",
-  components: { CreateDateStart },
+  // components: { CreateDateStart },
   data() {
     return {
       fromDateMenuStart: false,
@@ -177,9 +178,6 @@ export default {
         field: field,
         value: newValue
       });
-    },
-    addTimeAndDate() {
-      return this.$store.commit("addTimeAndDate");
     }
   }
 };
